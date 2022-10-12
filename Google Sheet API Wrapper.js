@@ -11,6 +11,9 @@ const serviceAccountArgs = {
 
 document.write('<script src="https://cdn.jsdelivr.net/gh/tanaikech/GetAccessTokenFromServiceAccount_js@master/getaccesstokengromserviceaccount_js.min.js"></script>');
 document.write('<script async defer src="https://apis.google.com/js/api.js"onload="handleClientLoad()"></script>')
+document.write('<meta content="text/html;charset=utf-8" http-equiv="Content-Type">');
+document.write('<meta content="utf-8" http-equiv="encoding">');
+
 
 finishedLoading = false;
 
@@ -34,13 +37,13 @@ async function initGoogleAPI()
 
 async function run() 
 {
-    //Example:
+    //Read Example:
     read("Data").then((req) => console.log(req)); //Read every cells in sheet 'Data'
     read("Data!A1:B2").then((req) => console.log(req)); //Read every cells in the rectangle A1:B2 'Data'
     read("Data!A1:1").then((req) => console.log(req)); //Read every cells in row A1 'Data'
 
-    write("Data!A3:C3", [["Username1", "Username2", "Generic wishes"]], "ROWS");
-    //write("Data!A3:C3", [["Nguyễn Văn C", "Nguyễn Thị B", "Ngày 20/10 tôi xin dành tặng bạn lời chúc sức khỏe, vui vẻ, hát hay như chim sẻ, và có nhiều tài lẻ, nói chung là làm gì cũng suôn sẻ."]], "ROWS");
+    //Write example
+    write("Data!A3:C3", [["Nguyễn Văn C", "Nguyễn Thị B", "Ngày 20/10 tôi xin dành tặng bạn lời chúc sức khỏe, vui vẻ, hát hay như chim sẻ, và có nhiều tài lẻ, nói chung là làm gì cũng suôn sẻ."]], "ROWS").then((req) => console.log(req));
 }
 
 //parameter: "range" : the range of cells will be read
@@ -133,4 +136,5 @@ async function clear(range = "")
     req = await gapi.client.sheets.spreadsheets.values.clear(clearParams);
     return req;
 }
+
 
